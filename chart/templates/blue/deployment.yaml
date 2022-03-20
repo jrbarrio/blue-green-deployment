@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-blue
+  name: {{ printf "%s-blue" .Release.Name }}
   labels:
-    app: {{ .Release.Name }}-blue
+    app: {{ printf "%s-blue" .Release.Name }}
 spec:
   replicas: {{ .Values.replicas.blue }}
   selector:
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag.blue }}
+        image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag.blue }}
         ports:
         - containerPort: 80
         readinessProbe:

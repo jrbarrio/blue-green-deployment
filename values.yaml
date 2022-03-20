@@ -1,0 +1,12 @@
+replicas:
+  blue: 3
+  green: 3
+
+image:
+  repository: kennethreitz/httpbin
+  tag: 
+    blue: latest
+    green: latest
+
+prod:
+  role: blue

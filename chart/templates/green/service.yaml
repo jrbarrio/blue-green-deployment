@@ -4,7 +4,7 @@ metadata:
   labels:
     app: {{ .Release.Name }}
     role: test-green
-  name: {{ .Release.Name }}-green
+  name: {{ printf "%s-green" .Release.Name }}
 spec:
   type: NodePort
   ports:
