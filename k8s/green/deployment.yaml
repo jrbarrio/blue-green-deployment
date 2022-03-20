@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin-green
+  labels:
+    app: httpbin-green
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: httpbin
+      role: green
+  template:
+    metadata:
+      labels:
+        app: httpbin
+        role: green
+    spec:
+      containers:
+      - name: httpbin
+        image: kennethreitz/httpbin
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
