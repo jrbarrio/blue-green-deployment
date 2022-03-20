@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: httpbin-green
+  name: {{ .Release.Name }}-green
   labels:
-    app: httpbin-green
+    app: {{ .Release.Name }}-green
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicas.green }}
   selector:
     matchLabels:
-      app: httpbin
+      app: {{ .Release.Name }}
       role: green
   template:
     metadata:
       labels:
-        app: httpbin
+        app: {{ .Release.Name }}
         role: green
     spec:
       containers:
-      - name: httpbin
-        image: kennethreitz/httpbin
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag.green }}
         ports:
         - containerPort: 80
         readinessProbe:
