@@ -1,0 +1,8 @@
+role: green
+
+replicas: 3
+
+image:
+  repository: kennethreitz/httpbin
+  tag: latest
+  

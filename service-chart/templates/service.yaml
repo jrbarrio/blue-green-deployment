@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: {{ .Release.Name }}
-    role: {{ .Values.prod.role }}
+    role: {{ .Values.role }}
     env: prod
   name: {{ .Release.Name }}
 spec:
@@ -13,5 +13,5 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: {{ .Release.Name }}
-    role: {{ .Values.prod.role }}
+    app: {{ printf "%s-%s" .Release.Name .Values.role }}
+    role: {{ .Values.role }}

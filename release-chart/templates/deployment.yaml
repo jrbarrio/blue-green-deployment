@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ printf "%s-green" .Release.Name }}
+  name: {{ .Release.Name }}
   labels:
-    app: {{ printf "%s-green" .Release.Name }}
+    app: {{ .Release.Name }}
 spec:
-  replicas: {{ .Values.replicas.green }}
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
       app: {{ .Release.Name }}
-      role: green
+      role: {{ .Values.role }}
   template:
     metadata:
       labels:
         app: {{ .Release.Name }}
-        role: green
+        role: {{ .Values.role }}
     spec:
       containers:
       - name: {{ .Release.Name }}
-        image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag.green }}
+        image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
         ports:
         - containerPort: 80
         readinessProbe:

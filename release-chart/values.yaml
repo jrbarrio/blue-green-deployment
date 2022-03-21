@@ -1,0 +1,7 @@
+role: blue
+
+replicas: 1
+
+image:
+  repository: kennethreitz/httpbin
+  tag: latest
